@@ -7,10 +7,14 @@ html
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")        
         title='Alta de Productos'
     body    
+        div(class="m-5 pb-5 bg-primary")
+            h1.text-white= 'Bienvenido'
+            form(id="logOut-form" action="/logout")
+                button(class="btn btn-warning")="Desloguear"
         div(class="m-5 pb-5 bg-light")
             h2.text-primary= 'Ingrese Producto'
             br
-            form        
+            form(id="prod-form")         
                 label.strong.em= 'Nombre'
                 br
                 input(type="text" id="title" name="title" placeholder="Calculadora")

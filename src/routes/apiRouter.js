@@ -137,5 +137,21 @@ router.get('/vista', (req, res) => {
     res.render('main.handlebars', datosProductos);
 });
 
+router.post('/login', (req, res) => {
+    const body = req.body;
+    const myUser = 'Mariano';
+    const myPassword = 'CoderHouse';
+
+    const { username } = req.body;
+
+    if (username == myUser) {
+        req.session.loggedIn = true;
+        req.session.contador = 1;
+        req.session.admin = true;
+        res.redirect('/');
+    } else res.status(401).json({ msg: 'no estas autorizado' });
+    //});
+});
+
 
 export default router;

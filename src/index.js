@@ -7,10 +7,11 @@ import {Producto} from './modelo';
 import { initWsServer } from './services/socket';
 import { productsController } from './controllers/producto';
 import recurso1Router from './routes/recurso1';
-import router2 from './routes/login';
+import apiRouter from './routes/apiRouter';
 import logOutRouter from './routes/logout';
 import logInRouter from './routes/login';
 import session from 'express-session';
+import { render } from 'pug';
 
 /*Declaración puerto y app*/
 const puerto = 8080;
@@ -44,6 +45,9 @@ app.use(
     resave: true,
   })
 );
+
+/**/
+app.use('/api',apiRouter);
 
 /*Route Login*/
 app.use('/login',logInRouter);
@@ -164,7 +168,8 @@ app.get('/vista', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.render('altaPug.pug');
+  if (req.session.loggedIn) res.render('altaPug');
+    else res.redirect('/login');
 });
 
 
